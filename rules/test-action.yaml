@@ -1,0 +1,18 @@
+action:
+  ref: stackstorm_demo.test-action
+  parameters:
+    trigger_body: '{{trigger.body}}'
+criteria: {}
+description: Call test-action webhook
+enabled: true
+name: test-action-webhook
+pack: stackstorm_demo
+ref: stackstorm_demo.test-action-webhook
+tags: []
+trigger:
+  parameters:
+    url: stackstorm-demo/test-action
+  type: core.st2.webhook
+type:
+  parameters: {}
+  ref: standard

@@ -2,6 +2,9 @@
 version: '2.0'
 
 stackstorm_demo.test-action:
+  input:
+    - trigger_body
+
   tasks:
     diagnose:
       action: core.local
@@ -20,4 +23,13 @@ stackstorm_demo.test-action:
         cwd: /opt/stackstorm/bin/stackstorm_demo_cli
       publish:
         blamed: "{{ task('blame').result.stdout }}"
+
+    notify:
+      action: email.send
+      wait-for:
+        - diagnose
+        - blame
+      input:
+        body: >
+          {{ _.diagnosis.result }}
 

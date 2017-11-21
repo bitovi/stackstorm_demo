@@ -22,6 +22,9 @@ parameters:
       If entry point is a workflow or a workbook with a single workflow, the runner
       will identify the workflow automatically.
     type: string
+  trigger_body:
+    description: The body of the trigger
+    type: object
 ref: stackstorm_demo.test-action
 runner_type: mistral-v2
 tags: []
