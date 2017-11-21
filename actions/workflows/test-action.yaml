@@ -6,6 +6,15 @@ stackstorm_demo.test-action:
     - trigger_body
 
   tasks:
+
+    delegate:
+      action: core.noop
+      publish:
+        trigger_details: "{{ _.trigger_body }}"
+      on-success:
+        - diagnose
+        - blame
+
     diagnose:
       action: core.local
       input:
