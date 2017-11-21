@@ -9,11 +9,20 @@ stackstorm_demo.test-action:
       publish:
         hello: "hello world"
       on-success:
-        - run
+        - diagnose
+        - blame
 
-    run:
+    diagnose:
       action: core.local
       inputs:
         cmd: >
-          echo "{{ _.hello }}"
+          node /opt/stackstorm/bin/stackstorm_demo_cli/index diagnose
+      publish:
+        diagnosis: "{{ task('diagnose').result }}"
+
+    blame:
+      action: core.local
+      inputs:
+        cmd: >
+          node /opt/stackstorm/bin/stackstorm_demo_cli/index blame
 
