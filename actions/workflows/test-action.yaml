@@ -3,15 +3,6 @@ version: '2.0'
 
 stackstorm_demo.test-action:
   tasks:
-    delegate:
-      # [165, 55]
-      action: core.noop
-      publish:
-        hello: "hello world"
-      on-success:
-        - diagnose
-        - blame
-
     diagnose:
       action: core.local
       input:
@@ -19,7 +10,7 @@ stackstorm_demo.test-action:
           node index diagnose
         cwd: /opt/stackstorm/bin/stackstorm_demo_cli
       publish:
-        diagnosis: "{{ task('diagnose').result }}"
+        diagnosis: "{{ task('diagnose').result.stdout }}"
 
     blame:
       action: core.local
@@ -27,4 +18,6 @@ stackstorm_demo.test-action:
         cmd: >
           node index blame
         cwd: /opt/stackstorm/bin/stackstorm_demo_cli
+      publish:
+        blamed: "{{ task('blame').result.stdout }}"
 
