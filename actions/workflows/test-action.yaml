@@ -8,4 +8,12 @@ stackstorm_demo.test-action:
       action: core.noop
       publish:
         hello: "hello world"
+      on-success:
+        - run
+
+    run:
+      action: core.local
+      inputs:
+        cmd: >
+          echo "{{ _.hello }}"
 
