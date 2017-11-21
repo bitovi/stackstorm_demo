@@ -24,12 +24,11 @@ stackstorm_demo.test-action:
       publish:
         blamed: "{{ task('blame').result.stdout }}"
 
-    notify:
-      action: email.send
-      wait-for:
-        - diagnose
-        - blame
-      input:
-        body: >
-          {{ _.diagnosis.result }}
-
+    # notify:
+    #   action: email.send
+    #   wait-for:
+    #     - diagnose
+    #     - blame
+    #   input:
+    #     body: >
+    #       {{ _.diagnosis.result }}
