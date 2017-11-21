@@ -14,7 +14,7 @@ stackstorm_demo.test-action:
 
     diagnose:
       action: core.local
-      inputs:
+      input:
         cmd: >
           node /opt/stackstorm/bin/stackstorm_demo_cli/index diagnose
       publish:
@@ -22,7 +22,7 @@ stackstorm_demo.test-action:
 
     blame:
       action: core.local
-      inputs:
+      input:
         cmd: >
           node /opt/stackstorm/bin/stackstorm_demo_cli/index blame
 
