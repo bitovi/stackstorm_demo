@@ -16,7 +16,8 @@ stackstorm_demo.test-action:
       action: core.local
       input:
         cmd: >
-          node /opt/stackstorm/bin/stackstorm_demo_cli/index diagnose
+          node index diagnose
+        cwd: /opt/stackstorm/bin/stackstorm_demo_cli
       publish:
         diagnosis: "{{ task('diagnose').result }}"
 
@@ -24,5 +25,6 @@ stackstorm_demo.test-action:
       action: core.local
       input:
         cmd: >
-          node /opt/stackstorm/bin/stackstorm_demo_cli/index blame
+          node index blame
+        cwd: /opt/stackstorm/bin/stackstorm_demo_cli
 
