@@ -1,0 +1,10 @@
+---
+name : stackstorm_demo
+description : Demo pack
+keywords:
+  - Bitovi
+  - StackStorm
+  - Demo
+version: 0.1.0
+author: Bitovi
+email: mick@bitovi.com

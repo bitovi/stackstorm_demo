@@ -1,0 +1,27 @@
+description: Test action for stackstorm
+enabled: true
+entry_point: workflows/test-action.yaml
+name: test-action
+notify: {}
+pack: stackstorm_demo
+parameters:
+  context:
+    default: {}
+    description: Additional workflow inputs.
+    type: object
+  skip_notify:
+    default: []
+    description: List of tasks to skip notifications for.
+    type: array
+  task:
+    description: The name of the task to run for reverse workflow.
+    type: string
+  workflow:
+    description: The name of the workflow to run if the entry_point is a workbook
+      of many workflows. The name should be in the format "<pack_name>.<action_name>.<workflow_name>".
+      If entry point is a workflow or a workbook with a single workflow, the runner
+      will identify the workflow automatically.
+    type: string
+ref: stackstorm_demo.test-action
+runner_type: mistral-v2
+tags: []

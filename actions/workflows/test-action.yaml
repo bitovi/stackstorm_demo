@@ -1,0 +1,11 @@
+---
+version: '2.0'
+
+stackstorm_demo.test-action:
+  tasks:
+    delegate:
+      # [165, 55]
+      action: core.noop
+      publish:
+        hello: "hello world"
+
