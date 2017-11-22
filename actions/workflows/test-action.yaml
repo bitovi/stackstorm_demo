@@ -86,7 +86,7 @@ stackstorm_demo.test-action:
                       {{ order.company }}
                     </td>
                     <td>
-                      {{ order.phone }} 
+                      {{ order.phone_number }}
                     </td>
                     <td>
                       {{ order.summary }}
