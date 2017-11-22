@@ -66,6 +66,9 @@ stackstorm_demo.test-action:
                   Company
                 </th>
                 <th>
+                  Phone
+                </th>
+                <th>
                   Summary
                 </th>
                 <th>
@@ -81,6 +84,9 @@ stackstorm_demo.test-action:
                     </td>
                     <td>
                       {{ order.company }}
+                    </td>
+                    <td>
+                      {{ order.phone|replace('\\xa0', ' ') }} 
                     </td>
                     <td>
                       {{ order.summary }}
