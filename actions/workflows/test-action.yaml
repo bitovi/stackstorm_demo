@@ -40,6 +40,7 @@ stackstorm_demo.test-action:
 
     notify:
       action: core.sendmail
+      join: all
       with-items: email in {{ _.emails }}
       input:
         from: "mick@bitovi.com"
@@ -48,4 +49,3 @@ stackstorm_demo.test-action:
         body: >
           We received an alert for location {{ _.trigger_body.details.location }} <br>
           Alert Id: ({{ _.trigger_body.alertId }})<br>
-          
