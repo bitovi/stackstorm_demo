@@ -62,7 +62,9 @@ stackstorm_demo.test-action:
                 <th>
                   Name
                 </th>
-
+                <th>
+                  Company
+                </th>
                 <th>
                   Summary
                 </th>
@@ -76,6 +78,9 @@ stackstorm_demo.test-action:
                   <tr>
                     <td>
                       {{ order.name }}
+                    </td>
+                    <td>
+                      {{ order.company }}
                     </td>
                     <td>
                       {{ order.summary }}
