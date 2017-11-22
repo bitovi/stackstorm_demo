@@ -71,11 +71,7 @@ stackstorm_demo.test-action:
                       {{ key }}
                     </td>
                     <td>
-                      {% if 'items' in value %}
-                        {{ value.items.description}}
-                      {% else %}
-                        {{ value.description }}
-                      {% endif %}
+                      test
                     </td>
                   </tr>
                 {% endif %}
