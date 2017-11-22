@@ -40,10 +40,10 @@ stackstorm_demo.test-action:
 
     notify:
       action: core.sendmail
-      with-items: email in <% $.emails %>
+      with-items: email in {{ _.emails }}
       input:
         from: "mick@bitovi.com"
-        to: <% email %>
+        to: "{{ _.email }}"
         subject: "Alert for location {{ _.trigger_body.details.location }} ({{ _.trigger_body.alertId }})"
         body: >
           We received an alert for location {{ _.trigger_body.details.location }} <br>
