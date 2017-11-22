@@ -64,18 +64,18 @@ stackstorm_demo.test-action:
               </tr>
             </thead>
             <tbody>
-              {% for key,val in _.diagnosis.items() %}
+              {% for key, value in _.diagnosis.iteritems() %}
                 {% if key != "description" %}
                   <tr>
                     <td>
                       {{ key }}
                     </td>
                     <td>
-                      {% if val.items %}
-                        {{ val.items.description}}<br>
-                        {{ val.items["$ref"] }}
+                      {% if value.items %}
+                        {{ value.items.description}}<br>
+                        {{ value.items["$ref"] }}
                       {% else %}
-                        {{ val.description }}
+                        {{ value.description }}
                       {% endif %}
                     </td>
                   </tr>
