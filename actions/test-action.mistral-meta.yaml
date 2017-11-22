@@ -25,6 +25,9 @@ parameters:
   trigger_body:
     description: The body of the trigger
     type: object
+  emails:
+    description: the emails to notify
+    type: array
 ref: stackstorm_demo.test-action
 runner_type: mistral-v2
 tags: []
