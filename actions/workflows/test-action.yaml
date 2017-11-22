@@ -71,7 +71,7 @@ stackstorm_demo.test-action:
                       {{ key }}
                     </td>
                     <td>
-                      {% if value.items %}
+                      {% if 'items' in value %}
                         {{ value.items.description}}<br>
                         {{ value.items["$ref"] }}
                       {% else %}
