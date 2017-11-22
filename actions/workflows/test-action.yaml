@@ -72,10 +72,9 @@ stackstorm_demo.test-action:
                     </td>
                     <td>
                       {% if "items" in value %}
-                        {{ value.items.description }}<br>
-                        {{ value.items["$ref"] }}
+                        items in value
                       {% else %}
-                        {{ value.description }}
+                        items not in value
                       {% endif %}
                     </td>
                   </tr>
