@@ -74,7 +74,7 @@ stackstorm_demo.test-action:
                       {% if "items" in value %}
                         items in value
                       {% else %}
-                        items not in value
+                        {{ value.description }}
                       {% endif %}
                     </td>
                   </tr>
