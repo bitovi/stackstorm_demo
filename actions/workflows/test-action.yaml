@@ -52,35 +52,49 @@ stackstorm_demo.test-action:
           <br />
           <b>Diagnosis:</b>
           {{ _.diagnosis.description }}<br>
+          <br><br>
+          <b>Recent Orders</b>
+          Address: {{ _.blamed.data.address }}<br>
+          Date: {{ _.blamed.data.registered }}<br>
           <table>
             <thead>
               <tr>
                 <th>
-                Key
+                  Name
                 </th>
                 <th>
-                Description
+                  Company
+                </th>
+                <th>
+                  Phone                
+                </th>
+                <th>
+                  Summary
+                </th>
+                <th>
+                  Work Order Number
                 </th>
               </tr>
             </thead>
             <tbody>
-              {% for key,val in _.diagnosis.items() %}
-                {% if key != "description" %}
+              {% for order in _.blamed.data.recent_orders %}
                   <tr>
                     <td>
-                      {{ key }}
+                      {{ order.name }}
                     </td>
                     <td>
-                      {% if val.items %}
-                        {{ val.items.description}}<br>
-                        {{ val.items["$ref"] }}
-                      {% else %}
-                        {{ val.description }}
-                      {% endif %}
+                      {{ order.company }}
+                    </td>
+                    <td>
+                      {{ order.phone }} 
+                    </td>
+                    <td>
+                      {{ order.summary }}
+                    </td>
+                    <td>
+                      {{ order.work_order_number }}
                     </td>
                   </tr>
-                {% endif %}
               {% endfor %}
             </tbody>
           </table>
-          
