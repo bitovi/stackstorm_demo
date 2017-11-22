@@ -52,6 +52,37 @@ stackstorm_demo.test-action:
           <br />
           <b>Diagnosis:</b>
           {{ _.diagnosis.description }}<br>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                Key
+                </th>
+                <th>
+                Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key,val in _.diagnosis.items() %}
+                {% if key != "description" %}
+                  <tr>
+                    <td>
+                      {{ key }}
+                    </td>
+                    <td>
+                      {% if val.items %}
+                        {{ val.items.description}}<br>
+                        {{ val.items["$ref"] }}
+                      {% else %}
+                        {{ val.description }}
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
           <br><br>
           <b>Recent Orders</b>
           Address: {{ _.blamed.data.address }}<br>
