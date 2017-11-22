@@ -69,9 +69,6 @@ stackstorm_demo.test-action:
                   Phone                
                 </th>
                 <th>
-                  Summary
-                </th>
-                <th>
                   Work Order Number
                 </th>
               </tr>
@@ -87,9 +84,6 @@ stackstorm_demo.test-action:
                     </td>
                     <td>
                       {{ order.phone }} 
-                    </td>
-                    <td>
-                      {{ order.summary }}
                     </td>
                     <td>
                       {{ order.work_order_number }}
