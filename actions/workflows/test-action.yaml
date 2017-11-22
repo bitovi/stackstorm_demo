@@ -17,7 +17,7 @@ stackstorm_demo.test-action:
         - blame
 
     diagnose:
-      action: stackstorm_demo.diagnose
+      action: core.local
       input:
         cmd: >
           node index diagnose
