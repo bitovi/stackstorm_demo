@@ -4,7 +4,6 @@ version: '2.0'
 stackstorm_demo.test-action:
   input:
     - trigger_body
-    - emails
 
   tasks:
 
@@ -25,7 +24,7 @@ stackstorm_demo.test-action:
       publish:
         diagnosis: "{{ task('diagnose').result.stdout }}"
       on-success:
-        - notify
+        - notify: "{{ 'emails' in _.trigger_body.details }}"
 
     blame:
       action: core.local
@@ -36,12 +35,12 @@ stackstorm_demo.test-action:
       publish:
         blamed: "{{ task('blame').result.stdout }}"
       on-success:
-        - notify
+        - notify: "{{ 'emails' in _.trigger_body.details }}"
 
     notify:
       action: core.sendmail
       join: all
-      with-items: email in {{ _.emails }}
+      with-items: email in {{ _.trigger_body.details.emails }}
       input:
         from: "mick@bitovi.com"
         to: "{{ _.email }}"
