@@ -2,7 +2,7 @@ action:
   ref: stackstorm_demo.test-action
   parameters:
     trigger_body: '{{trigger.body}}'
-    emails: '{{trigger.body.emails}}'
+    emails: '{{trigger.body.details.emails}}'
 criteria: {}
 description: Call test-action webhook
 enabled: true
