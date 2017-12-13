@@ -64,14 +64,16 @@ stackstorm_demo.test-action:
             </thead>
             <tbody>
               {% for key, value in _.diagnosis.iteritems() %}
-                <tr>
-                  <td>
-                    {{ key }}
-                  </td>
-                  <td>
-                    {{ value.value }}
-                  </td>
-                </tr>
+                {% if key != "description" %}
+                  <tr>
+                    <td>
+                      {{ key }}
+                    </td>
+                    <td>
+                      {{ value.value }}
+                    </td>
+                  </tr>
+                {% endif %}
               {% endfor %}
             </tbody>
           </table>
