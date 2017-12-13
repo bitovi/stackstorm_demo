@@ -12,28 +12,28 @@ stackstorm_demo.test-action:
       publish:
         trigger_details: "{{ _.trigger_body }}"
       on-success:
-        - diagnose
-        - blame
+        - diagnose_hit_rate
+        - work_order_history
 
-    diagnose:
+    diagnose_hit_rate:
       action: core.local
       input:
         cmd: >
           node index diagnose
         cwd: /opt/stackstorm/bin/stackstorm_demo_cli
       publish:
-        diagnosis: "{{ task('diagnose').result.stdout }}"
+        diagnosis: "{{ task('diagnose_hit_rate').result.stdout }}"
       on-success:
         - notify: "{{ 'emails' in _.trigger_body.details }}"
 
-    blame:
+    work_order_history:
       action: core.local
       input:
         cmd: >
           node index blame
         cwd: /opt/stackstorm/bin/stackstorm_demo_cli
       publish:
-        blamed: "{{ task('blame').result.stdout }}"
+        blamed: "{{ task('work_order_history').result.stdout }}"
       on-success:
         - notify: "{{ 'emails' in _.trigger_body.details }}"
 
@@ -58,22 +58,20 @@ stackstorm_demo.test-action:
                 Key
                 </th>
                 <th>
-                Description
+                Value
                 </th>
               </tr>
             </thead>
             <tbody>
               {% for key, value in _.diagnosis.iteritems() %}
-                {% if key != "description" %}
-                  <tr>
-                    <td>
-                      {{ key }}
-                    </td>
-                    <td>
-                      {{ value.description }}
-                    </td>
-                  </tr>
-                {% endif %}
+                <tr>
+                  <td>
+                    {{ key }}
+                  </td>
+                  <td>
+                    {{ value.value }}
+                  </td>
+                </tr>
               {% endfor %}
             </tbody>
           </table>
