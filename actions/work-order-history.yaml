@@ -4,4 +4,5 @@ entry_point: workflows/work-order-history.yaml
 name: work-order-history
 runner_type: mistral-v2
 skip_notify:
-  - run
+  default:
+    - run
