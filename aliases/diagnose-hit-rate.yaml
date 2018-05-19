@@ -16,9 +16,7 @@ result:
       {{ execution.result.result.description }}
       {% for key, value in execution.result.result.iteritems() %}
         {% if key != "description" %}
-
-          *Key:* {{ key }}
-          *Value:* {{ value.value }}
+          *{{ key }}:* {{ value.value }}
         {% endif %}
       {% endfor %}
 
