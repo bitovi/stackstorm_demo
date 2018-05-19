@@ -1,0 +1,27 @@
+---
+name: "diagnose-hit-rate"
+action_ref: "stackstorm_demo.diagnose-hit-rate"
+description: "Diagnose the hit rate"
+formats:
+  - display: "diagnose hit rate"
+    representation:
+      - "diagnose hit rate"
+ack:
+  enabled: true
+  append_url: false
+  format: "Alright! Let me check some sources."
+result:
+  format: |
+    {% if execution.status == "succeeded" %}
+      {{ execution.result.result.description }}
+      {% for key, value in execution.result.result.iteritems() %}
+        {% if key != "description" %}
+          *{{ key }}:* {{ value.value }}
+        {% endif %}
+      {% endfor %}
+
+    {% else %}
+    Execution failed.{~}
+    Please check {{ execution.id }} for details.
+    {% if execution.result.stderr %}*Stderr:* ```{{ execution.result.stderr }}```{% endif %}
+    {% endif %}

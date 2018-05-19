@@ -1,0 +1,33 @@
+---
+name: "work-order-history"
+action_ref: "stackstorm_demo.work-order-history"
+description: "Get the work order history"
+formats:
+  - display: "work order history"
+    representation:
+      - "(get )?work order history"
+ack:
+  enabled: true
+  append_url: false
+  format: "Alright! Let me check some sources."
+result:
+  format: |
+    {% if execution.status == "succeeded" %}
+      *Recent Orders*
+
+      *Address:* {{ execution.result.result.data.address }}
+      *Date:* {{ execution.result.result.data.registered }}
+      {% for order in execution.result.result.data.recent_orders %}
+
+        *Company:* {{ order.company }}
+        *{{ order.work_order_number }}:*
+        {{ order.name }} - {{ order.phone_number }}
+        *Summary:* {{ order.summary }}
+
+      {% endfor %}
+
+    {% else %}
+    Execution failed.{~}
+    Please check {{ execution.id }} for details.
+    {% if execution.result.stderr %}*Stderr:* ```{{ execution.result.stderr }}```{% endif %}
+    {% endif %}

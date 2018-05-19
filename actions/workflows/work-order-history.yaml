@@ -1,0 +1,16 @@
+---
+version: '2.0'
+
+stackstorm_demo.work-order-history:
+  output:
+    result: "{{ _.blamed }}"
+
+  tasks:
+    run:
+      action: core.local
+      input:
+        cmd: >
+          node index blame
+        cwd: /opt/stackstorm/bin/stackstorm_demo_cli
+      publish:
+        blamed: "{{ task('run').result.stdout }}"
