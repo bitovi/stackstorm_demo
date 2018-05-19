@@ -19,9 +19,9 @@ result:
       *Date:* {{ execution.result.result.data.registered }}
       {% for order in execution.result.result.data.recent_orders %}
 
+        *Company:* {{ order.company }}
         *{{ order.work_order_number }}:*
         {{ order.name }} - {{ order.phone_number }}
-        {{ order.company }}
         *Summary:* {{ order.summary }}
 
       {% endfor %}
