@@ -1,5 +1,5 @@
 action:
-  ref: stackstorm_demo.test-action
+  ref: stackstorm_demo.handle-test-action-webhook
   parameters:
     trigger_body: '{{trigger.body}}'
 criteria: {}
