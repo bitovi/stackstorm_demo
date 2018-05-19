@@ -1,7 +1,7 @@
 ---
 version: '2.0'
 
-stackstorm_demo.test-action:
+stackstorm_demo.handle-test-action-webhook:
   input:
     - trigger_body
 
