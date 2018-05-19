@@ -13,4 +13,4 @@ stackstorm_demo.work-order-history:
           node index blame
         cwd: /opt/stackstorm/bin/stackstorm_demo_cli
       publish:
-        blamed: "{{ task('work_order_history').result.stdout }}"
+        blamed: "{{ task('run').result.stdout }}"

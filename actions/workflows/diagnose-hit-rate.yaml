@@ -14,4 +14,4 @@ stackstorm_demo.diagnose-hit-rate:
           node index diagnose
         cwd: /opt/stackstorm/bin/stackstorm_demo_cli
       publish:
-        diagnosis: "{{ task('diagnose_hit_rate').result.stdout }}"
+        diagnosis: "{{ task('run').result.stdout }}"
