@@ -3,51 +3,37 @@ version: '2.0'
 
 stackstorm_demo.test-action:
   input:
-    - trigger_body
+    - location
+    - emails
+    - alertId
 
   tasks:
 
-    delegate:
-      action: core.noop
-      publish:
-        trigger_details: "{{ _.trigger_body }}"
-      on-success:
-        - diagnose_hit_rate
-        - work_order_history
-
     diagnose_hit_rate:
-      action: core.local
-      input:
-        cmd: >
-          node index diagnose
-        cwd: /opt/stackstorm/bin/stackstorm_demo_cli
+      action: stackstorm_demo.diagnose-hit-rate
       publish:
-        diagnosis: "{{ task('diagnose_hit_rate').result.stdout }}"
+        diagnosis: "{{ task('diagnose_hit_rate').result.result }}"
       on-success:
-        - notify: "{{ 'emails' in _.trigger_body.details }}"
+        - notify: "{{ 'emails' in _ }}"
 
     work_order_history:
-      action: core.local
-      input:
-        cmd: >
-          node index blame
-        cwd: /opt/stackstorm/bin/stackstorm_demo_cli
+      action: stackstorm_demo.work-order-history
       publish:
-        blamed: "{{ task('work_order_history').result.stdout }}"
+        blamed: "{{ task('work_order_history').result.result }}"
       on-success:
-        - notify: "{{ 'emails' in _.trigger_body.details }}"
+        - notify: "{{ 'emails' in _ }}"
 
     notify:
       action: core.sendmail
       join: all
-      with-items: email in {{ _.trigger_body.details.emails }}
+      with-items: email in {{ _.emails }}
       input:
         from: "mick@bitovi.com"
         to: "{{ _.email }}"
-        subject: "Alert for location {{ _.trigger_body.details.location }} ({{ _.trigger_body.alertId }})"
+        subject: "Alert for location {{ _.location }} ({{ _.alertId }})"
         body: >
-          We received an alert for location {{ _.trigger_body.details.location }} <br>
-          Alert Id: ({{ _.trigger_body.alertId }})<br>
+          We received an alert for location {{ _.location }} <br>
+          Alert Id: ({{ _.alertId }})<br>
           <br />
           <b>Diagnosis:</b>
           {{ _.diagnosis.description }}<br>

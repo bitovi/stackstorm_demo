@@ -1,0 +1,17 @@
+---
+version: '2.0'
+
+stackstorm_demo.diagnose-hit-rate:
+  output:
+    result: "{{ _.diagnosis }}"
+
+  tasks:
+
+    run:
+      action: core.local
+      input:
+        cmd: >
+          node index diagnose
+        cwd: /opt/stackstorm/bin/stackstorm_demo_cli
+      publish:
+        diagnosis: "{{ task('diagnose_hit_rate').result.stdout }}"

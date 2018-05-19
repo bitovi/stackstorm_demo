@@ -1,0 +1,5 @@
+description: Get the work order history
+enabled: true
+entry_point: workflows/work-order-history.yaml
+name: work-order-history
+runner_type: mistral-v2

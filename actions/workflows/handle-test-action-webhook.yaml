@@ -1,0 +1,23 @@
+---
+version: '2.0'
+
+stackstorm_demo.test-action:
+  input:
+    - trigger_body
+
+  tasks:
+
+    delegate:
+      action: core.noop
+      publish:
+        trigger_details: "{{ _.trigger_body }}"
+      on-success:
+        - diagnose_hit_rate
+        - work_order_history
+
+    run:
+      action: stackstorm_demo.test-action
+      input:
+        location: "{{ _.trigger_body.details.location }}"
+        emails: "{{ _.trigger_body.details.emails }}"
+        alertId: "{{ _.trigger_body.alertId }}"

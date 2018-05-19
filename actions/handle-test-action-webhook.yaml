@@ -1,0 +1,10 @@
+description: Run the test action from webhook data
+enabled: true
+entry_point: workflows/handle-test-action-webhook.yaml
+name: handle-test-action-webhook
+pack: stackstorm_demo
+parameters:
+  trigger_body:
+    description: The body of the trigger
+    type: object
+runner_type: mistral-v2
