@@ -13,13 +13,16 @@ ack:
 result:
   format: |
     {% if execution.status == "succeeded" %}
-      {{ execution.result.result.description }}
-      {% for key, value in execution.result.result.iteritems() %}
-        {% if key != "description" %}
+      *Recent Orders*
 
-          *Key:* {{ key }}
-          *Value:* {{ value.value }}
-        {% endif %}
+      *Address:* {{ execution.result.result.data.address }}
+      *Date:* {{ execution.result.result.data.registered }}
+      {% for order in execution.result.result.data.recent_orders %}
+        >  *Name* {{ order.name }}
+        >  *Company* {{ order.company }}
+        >  *Phone* {{ order.phone_number }}
+        >  *Summary* {{ order.summary }}
+        >  *Work Order Number* {{ order.work_order_number }}
       {% endfor %}
 
     {% else %}

@@ -3,3 +3,5 @@ enabled: true
 entry_point: workflows/diagnose-hit-rate.yaml
 name: diagnose-hit-rate
 runner_type: mistral-v2
+skip_notify:
+  - run
