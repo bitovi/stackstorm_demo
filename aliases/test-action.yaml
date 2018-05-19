@@ -3,7 +3,7 @@ name: "test-action"
 action_ref: "stackstorm_demo.test-action"
 description: "Execute the demo action"
 formats:
-  - display: "execute demo action"
+  - display: "execute demo action location='error_location' alertId='1234' emails='comma,separated,emails,list'"
     representation:
       - "(execute )?demo action"
 ack:

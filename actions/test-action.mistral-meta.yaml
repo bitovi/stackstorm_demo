@@ -17,5 +17,10 @@ parameters:
     description: The emails to notify
     type: array
     required: true
+  skip_notify:
+    default:
+      - diagnose_hit_rate
+      - work_order_history
+      - notify
 ref: stackstorm_demo.test-action
 runner_type: mistral-v2
