@@ -12,8 +12,7 @@ stackstorm_demo.handle-test-action-webhook:
       publish:
         trigger_details: "{{ _.trigger_body }}"
       on-success:
-        - diagnose_hit_rate
-        - work_order_history
+        - run
 
     run:
       action: stackstorm_demo.test-action
