@@ -19,4 +19,4 @@ stackstorm_demo.handle-test-action-webhook:
       input:
         location: "{{ _.trigger_body.details.location }}"
         emails: "{{ _.trigger_body.details.emails }}"
-        alertId: "{{ _.trigger_body.alertId }}"
+        alertId: "{{ _.trigger_body.alertId | string }}"
