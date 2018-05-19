@@ -5,7 +5,7 @@ description: "Get the work order history"
 formats:
   - display: "work order history"
     representation:
-      - "(get)? work order history"
+      - "(get )?work order history"
 ack:
   enabled: true
   append_url: false

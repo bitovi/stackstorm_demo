@@ -8,11 +8,14 @@ parameters:
   location:
     description: The location of an error
     type: string
+    required: true
   alertId:
     description: The id of an alert
     type: string
+    required: true
   emails:
     description: The emails to notify
     type: array
+    required: true
 ref: stackstorm_demo.test-action
 runner_type: mistral-v2
